@@ -1,0 +1,39 @@
+# Python-related
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+*.pdb
+
+# Virtual Environment
+venv/
+env/
+.venv/
+.env/
+
+# Flask instance and config files
+instance/
+*.env
+*.sqlite3
+
+# Logs
+*.log
+
+# PyCharm/IDE related
+.idea/
+.vscode/
+
+# Redis files
+*.rdb
+*.aof
+
+# Celery and task queue files
+celerybeat-schedule
+celerybeat.pid
+
+# Flask build files
+*.swp
+*.bak
+
+# Mac OS specific
+.DS_Store

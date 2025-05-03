@@ -1,0 +1,29 @@
+# Use the official Python 3.11 slim image as the base image
+FROM python:3.11-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the requirements file and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY . .
+
+# Set environment variables
+ENV PYTHONPATH=/app
+ENV FLASK_APP=wsgi.py
+
+# Optionally, create a virtual environment
+# RUN python3 -m venv /env
+# ENV PATH="/env/bin:$PATH"
+
+# Expose the app port
+EXPOSE 5000
+
+# Healthcheck to ensure the app is running
+HEALTHCHECK CMD curl --fail http://localhost:5000/ || exit 1
+
+# Command to run the app with Gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
